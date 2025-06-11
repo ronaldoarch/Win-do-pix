@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participe dos Sorteios no WhatsApp</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(26, 58, 41, 0.92);
+      border-radius: 28px;
+      padding: 48px 36px 36px 36px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 0 4px #3AC85B33;
+      max-width: 420px;
+      border: 2.5px solid #3AC85B;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(2px);
+      animation: popin 1s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popin {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .badge-gratis {
+      display: inline-block;
+      background: #FFE066;
+      color: #2B0A3D;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 16px;
+      padding: 6px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px #FFE06655;
+      letter-spacing: 1px;
+      position: relative;
+      top: -8px;
+      left: 0;
+      z-index: 3;
+      border: 2px solid #fff;
+    }
+    h1 {
+      font-size: 2.1em;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+      font-weight: bold;
+      text-shadow: 0 2px 12px #3AC85B, 0 0 8px #3AC85B99;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .subtitulo {
+      font-size: 1.15em;
+      color: #fff;
+      margin-bottom: 18px;
+      text-shadow: 0 1px 8px #2B0A3D99;
+    }
+    .desc {
+      font-size: 1.15em;
+      color: #FFFFFF;
+      margin-bottom: 18px;
+      text-shadow: 0 1px 8px #1D3A2999;
+    }
+    .valor {
+      font-size: 2em;
+      color: #fff;
+      font-weight: bold;
+      margin: 8px 0 10px 0;
+      text-shadow: 0 2px 8px #FF8C3299, 0 0 4px #FFE066;
+      background: linear-gradient(90deg, #FF8C32 40%, #FFE066 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 4px #FFE06655);
+      border-radius: 8px;
+      padding: 0 10px;
+      display: inline-block;
+    }
+    .cta {
+      display: inline-block;
+      background: linear-gradient(90deg, #3AC85B 60%, #FFC837 100%);
+      color: #1D3A29;
+      padding: 20px 44px 20px 32px;
+      font-size: 22px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 24px 0 #FFC83755, 0 0 0 3px #3AC85B55;
+      margin-top: 22px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      animation: popin 1.2s 0.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .cta:hover {
+      background: linear-gradient(90deg, #FFC837 60%, #3AC85B 100%);
+      transform: scale(1.04) translateY(-2px);
+      box-shadow: 0 8px 32px 0 #FFC83799, 0 0 0 4px #3AC85B99;
+    }
+    .cta .whatsapp-icon {
+      width: 38px;
+      vertical-align: middle;
+      margin-right: 10px;
+      filter: drop-shadow(0 0 6px #fff8);
+    }
+    .cta .arrow {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 1.2em;
+      vertical-align: middle;
+      animation: arrowmove 1s infinite alternate;
+    }
+    @keyframes arrowmove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(8px); }
+    }
+    .moedas {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      font-size: 3.2em;
+      color: #FFE066;
+      filter: drop-shadow(0 0 16px #FFE066cc);
+      animation: moedasparkle 2.5s infinite alternate;
+    }
+    @keyframes moedasparkle {
+      0% { filter: drop-shadow(0 0 8px #FFE06688); }
+      100% { filter: drop-shadow(0 0 24px #FFE066cc); }
+    }
+    .moeda1 { left: 7vw; top: 8vh; transform: rotate(-12deg); }
+    .moeda2 { right: 8vw; top: 18vh; transform: rotate(8deg); }
+    .moeda3 { left: 12vw; bottom: 13vh; transform: rotate(18deg); }
+    .moeda4 { right: 13vw; bottom: 8vh; transform: rotate(-8deg); }
+    .trevo {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      font-size: 2.7em;
+      color: #FF3CAC;
+      filter: drop-shadow(0 0 12px #FF3CACcc);
+      animation: trevoglow 2.2s infinite alternate;
+    }
+    @keyframes trevoglow {
+      0% { filter: drop-shadow(0 0 6px #FF3CAC88); }
+      100% { filter: drop-shadow(0 0 18px #FF3CACcc); }
+    }
+    .trevo1 { left: 18vw; top: 32vh; }
+    .trevo2 { right: 18vw; bottom: 22vh; }
+    .icon-trophy, .icon-coin {
+      font-size: 1.2em;
+      color: #FFC837;
+      margin: 0 4px;
+      vertical-align: middle;
+    }
+    .character {
+      color: #5A3B27;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      display: block;
+      text-shadow: 0 2px 0 #000000;
+    }
+    .arrow {
+      color: #3AC85B;
+      font-size: 1.2em;
+      margin-left: 10px;
+      vertical-align: middle;
+      text-shadow: 0 1px 0 #000000;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 24px 8px 18px 8px; max-width: 98vw; }
+      h1 { font-size: 1.3em; }
+      .valor { font-size: 1.2em; }
+      .cta { font-size: 1em; padding: 14px 18px 14px 12px; }
+      .cta .whatsapp-icon { width: 26px; }
+      .moedas, .trevo { font-size: 1.5em; }
+    }
+  </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '699537746300958');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=699537746300958&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Meta Pixel Code (Novo) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3940050539552027');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=3940050539552027&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code (Novo) -->
+
+  <!-- Meta Pixel Code NOVO -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '682855081178589');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=682855081178589&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- TOKEN: EAAme6cGUkBEBO16zU0sZA0RQYbtNKqeCJBDJWMM0bKMRaRvbwZCEiSXNdEPchC8QaGcenvkwCqpB4XE7mVJVa5jzV5ykQVnaRsgQqsDgDJUvKubMZBAp3BQXQsS8R09FZCqhB5atU2POPhOcs2JZCTFvlwxwYAS5kMUI5mlQUOBCrfQ0lNCZANhNeOUW6qo7m60gZDZD -->
+
+</head>
+<body style="background:#000; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; color:#fff; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; overflow:hidden;">
+  <div style="max-width:480px; margin:64px auto 32px auto; border:4px solid #ff2222; border-radius:16px; background:#111; padding:48px 18px 18px 18px; box-shadow:0 0 24px #000a; text-align:center; position:relative; z-index:5; overflow:hidden;">
+    <!-- Imagem de fundo centralizada e suave -->
+    <img src='Jogos.png' alt='Jogos Populares' style='position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:85%; max-width:420px; min-width:200px; opacity:0.13; filter:blur(1px); z-index:1; pointer-events:none;'>
+    <div style="position:relative; z-index:10;">
+      <div style="font-size:2.3em; font-weight:900; color:#ff2222; margin-bottom:8px; letter-spacing:1px; animation:pulseTitle 1.5s infinite alternate;">🎲 Bem-vindo à Windopix</div>
+      <div style="font-size:1.3em; font-weight:600; color:#fff; margin-bottom:18px;">A melhor casa de jogos online para você se divertir e ganhar!</div>
+      <ul style="list-style:none; padding:0; margin:0 0 22px 0; text-align:left; font-size:1.13em; font-weight:500;">
+        <li style="margin-bottom:10px; color:#fff;">✔️ Jogos populares e exclusivos</li>
+        <li style="margin-bottom:10px; color:#fff;">✔️ Bônus de boas-vindas para novos jogadores</li>
+        <li style="margin-bottom:10px; color:#fff;">✔️ Suporte 24h em português</li>
+      </ul>
+      <a href="https://windopix.com/home/game?gameCategoryId=0" style="display:inline-block; background:#2ecc40; color:#fff; font-weight:900; font-size:1.3em; padding:16px 32px; border-radius:8px; text-decoration:none; margin:18px 0 8px 0; box-shadow:0 2px 8px #2ecc4055; transition:background 0.2s; animation:botaoPulse 1.5s infinite alternate; position:relative; z-index:20;" target="_blank">JOGAR AGORA</a>
+      <div style="margin-top:32px; color:#aaa; font-size:1em; line-height:1.5;">
+        Midas – Todos os direitos reservados
+      </div>
+    </div>
+  </div>
+  <style>
+    @keyframes pulseTitle {
+      0% { text-shadow: 0 0 0 #ff2222; }
+      100% { text-shadow: 0 0 18px #ff2222, 0 0 8px #fff; }
+    }
+    @keyframes botaoPulse {
+      0% { box-shadow: 0 2px 8px #2ecc4055, 0 0 0 #2ecc40; }
+      100% { box-shadow: 0 2px 18px #2ecc40cc, 0 0 12px #fff2; }
+    }
+  </style>
+</body>
+</html>
